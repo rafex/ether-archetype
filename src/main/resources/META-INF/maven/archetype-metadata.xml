@@ -180,13 +180,8 @@
             </includes>
         </fileSet>
 
-        <!-- Git -->
-        <fileSet filtered="false" encoding="UTF-8">
-            <directory></directory>
-            <includes>
-                <include>.gitignore</include>
-            </includes>
-        </fileSet>
+        <!-- Note: .gitignore files are created by archetype-post-generate.groovy
+             because maven-archetype-plugin silently skips dot-files in fileSets. -->
     </fileSets>
 
 </archetype-descriptor>

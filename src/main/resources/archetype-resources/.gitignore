@@ -1,24 +1,64 @@
-# Maven
+# ── Maven ─────────────────────────────────────────────────────────────────────
 target/
+.flattened-pom.xml
+release.properties
+dependency-reduced-pom.xml
+
+# Maven wrapper downloaded artifacts (jar is fetched on first run)
+.mvn/wrapper/maven-wrapper.jar
 .mvn/timing.properties
 
-# IDEs
+# ── IDE — IntelliJ IDEA ───────────────────────────────────────────────────────
 .idea/
 *.iml
-.vscode/
-*.classpath
-*.project
+*.iws
+*.ipr
+out/
+
+# ── IDE — Eclipse ─────────────────────────────────────────────────────────────
+.classpath
+.project
 .settings/
+bin/
 
-# OS
-.DS_Store
-Thumbs.db
+# ── IDE — VS Code ─────────────────────────────────────────────────────────────
+.vscode/
+!.vscode/extensions.json
 
-# Logs
+# ── IDE — NetBeans ────────────────────────────────────────────────────────────
+nbproject/
+nbbuild/
+nbdist/
+nb-configuration.xml
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
 *.log
+logs/
 
-# OWASP reports
+# ── Environment & secrets ─────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+
+# ── Docker ────────────────────────────────────────────────────────────────────
+docker-compose.override.yml
+
+# ── OWASP / Security reports ──────────────────────────────────────────────────
 dependency-check-report.*
 
-# Runtime
+# ── Runtime / PID ─────────────────────────────────────────────────────────────
 *.pid
+*.pid.lock
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V7
+.Trashes
+ehthumbs.db
+Thumbs.db
