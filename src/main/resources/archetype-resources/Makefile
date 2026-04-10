@@ -1,13 +1,20 @@
 # Makefile for ${rootArtifactId}
-# Requires: Maven 3.9+, Java ${javaVersion}+
+# Build system — compile, test, package, quality checks
+#
+# Responsibility split:
+#   make  → build system  (compile, test, package, quality)
+#   just  → task runner   (run, docker, db, dev lifecycle)
+#   just CAN call make; make must NOT call just
+#
+# Requires: Maven wrapper (./mvnw)
 
 MVN := ./mvnw
 
-.PHONY: help build test clean format format-check quality install install-full package run
+.PHONY: help build test clean format format-check quality install install-full package
 
 help:
 	@echo ""
-	@echo "Available targets:"
+	@echo "Build targets for ${rootArtifactId}:"
 	@echo "  build         Compile all modules"
 	@echo "  test          Run unit tests"
 	@echo "  clean         Remove build artifacts"
@@ -17,7 +24,8 @@ help:
 	@echo "  install       Install all modules to local Maven repo (skip tests)"
 	@echo "  install-full  Install with tests"
 	@echo "  package       Package transport-jetty as fat jar"
-	@echo "  run           Package and run the application"
+	@echo ""
+	@echo "  For application lifecycle (run, docker, db...) use: just --list"
 	@echo ""
 
 build:
@@ -46,6 +54,3 @@ install-full:
 
 package:
 	$(MVN) clean package -pl ${rootArtifactId}-transport-jetty -am
-
-run: package
-	java -jar ${rootArtifactId}-transport-jetty/target/${rootArtifactId}-transport-jetty-${version}-jar-with-dependencies.jar

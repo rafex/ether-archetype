@@ -136,6 +136,7 @@
     </modules>
 
     <fileSets>
+        <!-- Config files (static) -->
         <fileSet filtered="false" encoding="UTF-8">
             <directory>config/checkstyle</directory>
             <includes>
@@ -154,12 +155,32 @@
                 <include>**/*</include>
             </includes>
         </fileSet>
+
+        <!-- Maven wrapper (static — binary-safe scripts) -->
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory></directory>
+            <includes>
+                <include>mvnw</include>
+                <include>mvnw.cmd</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>.mvn/wrapper</directory>
+            <includes>
+                <include>maven-wrapper.properties</include>
+            </includes>
+        </fileSet>
+
+        <!-- Build system (make) and task runner (just) -->
         <fileSet filtered="true" encoding="UTF-8">
             <directory></directory>
             <includes>
                 <include>Makefile</include>
+                <include>Justfile</include>
             </includes>
         </fileSet>
+
+        <!-- Git -->
         <fileSet filtered="false" encoding="UTF-8">
             <directory></directory>
             <includes>
