@@ -22,10 +22,13 @@
 
     <inceptionYear>2026</inceptionYear>
 
+    <scm>
+        <connection>scm:git:https://github.com/rafex/ether-archetype.git</connection>
+        <developerConnection>scm:git:https://github.com/rafex/ether-archetype.git</developerConnection>
+        <url>https://github.com/rafex/ether-archetype</url>
+    </scm>
+
     <properties>
-        <!-- Archetypes have no Java sources — skip javadoc and source attachment -->
-        <maven.source.skip>true</maven.source.skip>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
         <maven.archetype.plugin.version>3.2.1</maven.archetype.plugin.version>
     </properties>
 
@@ -46,6 +49,18 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <!-- Archetype has no Java source files; allow javadoc:jar to produce
+                 an empty (but valid) JAR rather than failing the build. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <failOnError>false</failOnError>
+                    <failOnWarnings>false</failOnWarnings>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
