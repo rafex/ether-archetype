@@ -9,7 +9,8 @@ PRE_DEPLOY_GOALS    :=
 include ../build-helpers/common.mk
 include ../build-helpers/git.mk
 
-# Archetype has no mvnw wrapper — delegate to system mvn
+# Archetype has no mvnw wrapper — delegate to system mvn.
+# Must cd into PROJECT_DIR first because pom.xml lives there, not at repo root.
 define run_mvnw
-	mvn $(1)
+	cd $(PROJECT_DIR) && mvn $(1)
 endef
