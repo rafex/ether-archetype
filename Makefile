@@ -1,5 +1,5 @@
 # Set the directory for this project (flat structure — pom.xml is at the root)
-PROJECT_DIR         := .
+PROJECT_DIR         := ether-archetype
 PROJECT_GROUP_ID    := dev.rafex.ether
 PROJECT_ARTIFACT_ID := ether-hexagonal-archetype
 # Archetypes have no Java sources — skip source:jar and javadoc:jar
