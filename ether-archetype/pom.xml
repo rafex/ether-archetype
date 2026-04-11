@@ -22,6 +22,23 @@
 
     <inceptionYear>2026</inceptionYear>
 
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/license/mit/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Raúl Eduardo González Argote</name>
+            <email>rafex@rafex.dev</email>
+            <organization>dev.rafex</organization>
+            <organizationUrl>https://rafex.dev</organizationUrl>
+        </developer>
+    </developers>
+
     <scm>
         <connection>scm:git:https://github.com/rafex/ether-archetype.git</connection>
         <developerConnection>scm:git:https://github.com/rafex/ether-archetype.git</developerConnection>
@@ -50,64 +67,18 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <!-- No Java sources in this archetype; produce valid-but-empty
-                 sources and javadoc JARs required by Maven Central. -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>package</phase>
-                        <goals><goal>jar-no-fork</goal></goals>
-                        <configuration>
-                            <!-- Create the JAR even with no .java files -->
-                            <forceCreation>true</forceCreation>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- Skip the inherited javadoc execution (no .java files);
-                 an empty javadoc JAR is created below via antrun+jar. -->
+            <!-- Archetype has a minimal package-info.java so the standard
+                 source and javadoc plugins (inherited from ether-parent)
+                 produce valid JARs required by Maven Central. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
-                    <skip>true</skip>
+                    <failOnError>false</failOnError>
+                    <failOnWarnings>false</failOnWarnings>
+                    <doclint>none</doclint>
+                    <quiet>true</quiet>
                 </configuration>
-            </plugin>
-            <!-- Step 1: create an empty apidocs dir for the javadoc JAR -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>create-empty-apidocs</id>
-                        <phase>prepare-package</phase>
-                        <goals><goal>run</goal></goals>
-                        <configuration>
-                            <target>
-                                <mkdir dir="${project.build.directory}/apidocs"/>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- Step 2: bundle the empty dir as the -javadoc.jar classifier -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>empty-javadoc-jar</id>
-                        <phase>package</phase>
-                        <goals><goal>jar</goal></goals>
-                        <configuration>
-                            <classifier>javadoc</classifier>
-                            <classesDirectory>${project.build.directory}/apidocs</classesDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
